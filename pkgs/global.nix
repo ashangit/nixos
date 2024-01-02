@@ -4,6 +4,7 @@
   imports =
   [
     ./container.nix
+    ./git.nix
     ./logiops.nix
     ./tlp.nix
   ];
