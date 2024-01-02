@@ -9,7 +9,7 @@
     isNormalUser = true;
     description = "Nicolas Fraison";
     home = "/home/nfraison";
-    extraGroups = [ "networkmanager" "wheel" "family" ];
+    extraGroups = [ "networkmanager" "wheel" "family" "docker" ];
   };
   
   users.users.mherson = {

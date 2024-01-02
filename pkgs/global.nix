@@ -3,6 +3,7 @@
 {
   imports =
   [
+    ./container.nix
     ./logiops.nix
     ./tlp.nix
   ];
@@ -16,8 +17,7 @@
     "openssl-1.1.1w"
   ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile
   environment.systemPackages = with pkgs; [
     # editor
     sublime4
@@ -39,6 +39,7 @@
     # web
     firefox
     # others
+    docker-gc
     libreoffice
     wget
   ];
