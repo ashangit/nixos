@@ -7,7 +7,7 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./hardware/global.nix
       ./nix-configuration.nix
       ./kde-configuration.nix
       ./pkgs/global.nix

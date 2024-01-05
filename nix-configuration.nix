@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   # nix.conf
   nix.settings.auto-optimise-store = true;

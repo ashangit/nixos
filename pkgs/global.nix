@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -33,6 +33,7 @@
     # kde
     libsForQt5.kdenlive
     libsForQt5.merkuro
+    libsForQt5.skanlite
     # security
     bitwarden
     gnupg
