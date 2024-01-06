@@ -15,7 +15,6 @@
     plasma-browser-integration
   ];
 
-
   # Configure keymap in X11
   services.xserver = {
     layout = "fr";

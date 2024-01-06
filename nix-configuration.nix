@@ -1,8 +1,18 @@
 {
   # nix.conf
-  nix.settings.auto-optimise-store = true;
-  nix.optimise.automatic = true;
-  nix.optimise.dates = ["10:00"];
-  nix.gc.automatic = true;
-  nix.gc.dates = "11:00";
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+    };
+    optimise = {
+      automatic = true;
+      dates = ["10:00"];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      randomizedDelaySec = "14m";
+      options = "--delete-older-than 10d";
+    };
+  };
 }

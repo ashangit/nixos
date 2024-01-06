@@ -44,5 +44,11 @@
     docker-gc
     libreoffice
     wget
+    fzf
+    rsync
+    # Archive
+    gzip
+    zip
+    zstd
   ];
 }
