@@ -4,11 +4,13 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ 
-      (modulesPath + "/installer/scan/not-detected.nix")
-      ./printer.nix
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./audio.nix
+    ./bluetooth.nix
+    ./network.nix
+    ./printer.nix
+  ];
   
   boot.initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
@@ -44,4 +46,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # Firmware update
+  services.fwupd.enable = true;
 }
