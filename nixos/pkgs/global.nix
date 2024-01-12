@@ -45,6 +45,7 @@
     wget
     fzf
     rsync
+    statix
     # Archive
     gzip
     zip

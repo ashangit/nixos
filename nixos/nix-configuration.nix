@@ -6,13 +6,18 @@
     };
     optimise = {
       automatic = true;
-      dates = ["10:00"];
+      dates = ["daily"];
     };
     gc = {
       automatic = true;
-      dates = "weekly";
-      randomizedDelaySec = "14m";
-      options = "--delete-older-than 10d";
+      dates = "daily";
+      options = "--delete-older-than 7d";
     };
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "daily";
+    persistent = true;
   };
 }
