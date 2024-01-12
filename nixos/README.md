@@ -9,3 +9,9 @@ sudo nixos-rebuild switch --upgrade
 nix-collect-garbage -d
 sudo nix-collect-garbage -d
 ```
+
+# Syntax check
+```shell
+statix check
+statix fix
+```

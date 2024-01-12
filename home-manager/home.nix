@@ -23,17 +23,17 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages = [
-      pkgs.gitprompt-rs
-      pkgs.rustup
-      pkgs.jetbrains.dataspell
-      pkgs.jetbrains.goland
-      pkgs.jetbrains.idea-ultimate
-      pkgs.jetbrains.pycharm-professional
-      pkgs.jetbrains.rust-rover
-      pkgs.jetbrains.webstorm
-      pkgs.dbeaver
-      pkgs.sqlitebrowser
+    packages =  with pkgs; [
+      gitprompt-rs
+      rustup
+      jetbrains.dataspell
+      jetbrains.goland
+      jetbrains.idea-ultimate
+      jetbrains.pycharm-professional
+      jetbrains.rust-rover
+      jetbrains.webstorm
+      dbeaver
+      sqlitebrowser
     ];
 
   };
