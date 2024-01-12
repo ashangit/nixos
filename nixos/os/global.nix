@@ -1,5 +1,6 @@
 {
   imports = [
+      ./sysctl.nix
       ./locale.nix
   ];
 
