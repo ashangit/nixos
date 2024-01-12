@@ -12,25 +12,32 @@
     ./printer.nix
   ];
   
-  boot.initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      kernelModules = [ ];
+    };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c4f5e094-ede7-4f58-9c8a-145cad9f10ac";
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
+
+  fileSystems = {
+    "/" =  {
+      device = "/dev/disk/by-uuid/c4f5e094-ede7-4f58-9c8a-145cad9f10ac";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2E7B-AE18";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/2E7B-AE18";
       fsType = "vfat";
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/88238382-ad73-4063-9f79-ed75c8d71fb8";
+    "/home" = {
+      device = "/dev/disk/by-uuid/88238382-ad73-4063-9f79-ed75c8d71fb8";
       fsType = "ext4";
     };
+  };
 
   swapDevices = [ ];
 
