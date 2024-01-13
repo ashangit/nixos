@@ -3,6 +3,7 @@
       ./boot.nix
       ./sysctl.nix
       ./locale.nix
+      ./documentation.nix
   ];
 
   # Delete all files in /tmp during boot.
