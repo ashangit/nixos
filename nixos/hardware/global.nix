@@ -16,4 +16,6 @@
 
   # Firmware update
   services.fwupd.enable = true;
+
+  hardware.mcelog.enable = true;
 }
