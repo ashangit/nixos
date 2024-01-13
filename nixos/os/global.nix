@@ -4,6 +4,9 @@
       ./locale.nix
   ];
 
+  # Delete all files in /tmp during boot.
+  boot.tmp.cleanOnBoot = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
