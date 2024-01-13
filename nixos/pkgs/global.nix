@@ -19,36 +19,76 @@
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-    # editor
-    sublime4
-    vim
-    # photo
-    digikam
-    # mail
-    mailspring
-    # video
-    glaxnimate
-    vlc
-    # kde
-    libsForQt5.kdenlive
-    libsForQt5.merkuro
-    libsForQt5.skanlite
-    # security
-    bitwarden
-    gnupg
-    pinentry-qt
-    # web
-    firefox
-    # others
-    docker-gc
-    libreoffice
-    wget
-    fzf
-    rsync
-    statix
+
+    # ---------------------------------------------------------------------
     # Archive
+    # ---------------------------------------------------------------------
+
     gzip
     zip
     zstd
+
+    # ---------------------------------------------------------------------
+    # Editor
+    # ---------------------------------------------------------------------
+
+    sublime4    # https://www.sublimetext.com/
+    vim         # https://github.com/vim/vim
+
+    # ---------------------------------------------------------------------
+    # Mail
+    # ---------------------------------------------------------------------
+
+    mailspring
+
+    # ---------------------------------------------------------------------
+    # Nix
+    # ---------------------------------------------------------------------
+
+    statix      # Lints and suggestions for the Nix programming language
+                # https://github.com/nerdypepper/statix
+
+    # ---------------------------------------------------------------------
+    # Office utilities
+    # ---------------------------------------------------------------------
+
+    libreoffice
+    libsForQt5.merkuro      # Calendar: https://github.com/KDE/merkuro
+    libsForQt5.skanlite     # Scanner: https://github.com/KDE/skanlite
+
+    # ---------------------------------------------------------------------
+    # Others Utilities
+    # ---------------------------------------------------------------------
+
+    wget
+    fzf
+    rsync
+
+    # ---------------------------------------------------------------------
+    # Photo
+    # ---------------------------------------------------------------------
+
+    digikam     # https://github.com/KDE/digikam
+
+    # ---------------------------------------------------------------------
+    # Video
+    # ---------------------------------------------------------------------
+
+    libsForQt5.kdenlive     # Video editor: https://github.com/KDE/kdenlive
+    vlc
+
+    # ---------------------------------------------------------------------
+    # Security
+    # ---------------------------------------------------------------------
+
+    bitwarden
+    pinentry-qt
+    gnupg
+
+    # ---------------------------------------------------------------------
+    # Web
+    # ---------------------------------------------------------------------
+
+    firefox
   ];
 }
