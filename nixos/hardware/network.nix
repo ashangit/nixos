@@ -10,5 +10,11 @@
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
+
+    firewall = {
+      enable = true;
+      allowPing = false;
+      logRefusedConnections = true;
+    };
   };
 }
