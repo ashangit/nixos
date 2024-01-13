@@ -1,6 +1,5 @@
 {
   imports = [
-      ./boot.nix
       ./sysctl.nix
       ./locale.nix
       ./documentation.nix
