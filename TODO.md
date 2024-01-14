@@ -1,4 +1,5 @@
 - add precommit
 - add printer c235 creation with pdd
 - add backup deployment
-- what about plasma configsre
+- what about plasma config
+- push to github
