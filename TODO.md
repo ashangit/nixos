@@ -1,6 +1,4 @@
 - add precommit
-- solve all syntax issue with statix
-- move to service when exist
 - add printer c235 creation with pdd
 - add backup deployment
-- what about plasma config
+- what about plasma configsre

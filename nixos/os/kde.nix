@@ -9,7 +9,10 @@
       layout = "fr";
       xkbVariant = "";
       # Enable the KDE Plasma Desktop Environment.
-      displayManager.sddm.enable = true;
+      displayManager.sddm = {
+        enable = true;
+        autoNumlock = true;
+      };
       desktopManager.plasma5.enable = true;
     };
   };

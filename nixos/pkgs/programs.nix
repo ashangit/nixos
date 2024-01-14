@@ -17,5 +17,6 @@
     iotop.enable = true;
     vim.defaultEditor = true;
     gnupg.agent.enable =  true;
+    dconf.enable = true;
   };
 }

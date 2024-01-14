@@ -10,7 +10,6 @@
       ./hardware/global.nix
       ./os/global.nix
       ./nix-configuration.nix
-      ./kde-configuration.nix
       ./pkgs/global.nix
       ./users-configuration.nix
       <home-manager/nixos>
