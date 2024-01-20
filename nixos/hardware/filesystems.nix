@@ -1,6 +1,6 @@
 {
   fileSystems = {
-    "/" =  {
+    "/" = {
       device = "/dev/disk/by-uuid/c4f5e094-ede7-4f58-9c8a-145cad9f10ac";
       fsType = "ext4";
     };
@@ -16,5 +16,5 @@
     };
   };
 
-  swapDevices = [ ];
+  swapDevices = [];
 }

@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   networking = {
     hostName = "T14SNixos";
 

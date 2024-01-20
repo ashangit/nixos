@@ -1,9 +1,9 @@
 {
   imports = [
-      ./sysctl.nix
-      ./locale.nix
-      ./documentation.nix
-      ./kde.nix
+    ./sysctl.nix
+    ./locale.nix
+    ./documentation.nix
+    ./kde.nix
   ];
 
   # Delete all files in /tmp during boot.

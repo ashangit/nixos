@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-   logiops
+    logiops
   ];
 
   # Systemd services
@@ -10,7 +8,7 @@
     enable = true;
     description = "Logitech Configuration Daemon";
     after = ["network.target"];
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "simple";
       User = "root";
@@ -18,7 +16,7 @@
       ExecReload = "/bin/kill -HUP $MAINPID";
       Restart = "on-failure";
     };
-   };
+  };
 
   # Config
   environment.etc."logid.cfg" = {

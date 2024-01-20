@@ -10,13 +10,13 @@
     };
     fzf = {
       fuzzyCompletion = true;
-      keybindings =  true;
+      keybindings = true;
     };
     htop.enable = true;
     iftop.enable = true;
     iotop.enable = true;
     vim.defaultEditor = true;
-    gnupg.agent.enable =  true;
+    gnupg.agent.enable = true;
     dconf.enable = true;
   };
 }

@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-
-{
-  imports =
-  [
+{pkgs, ...}: {
+  imports = [
     ./programs.nix
     ./container.nix
     ./logiops.nix
@@ -20,7 +17,6 @@
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-
     # ---------------------------------------------------------------------
     # Archive
     # ---------------------------------------------------------------------
@@ -33,7 +29,7 @@
     # Editor
     # ---------------------------------------------------------------------
 
-    sublime4    # https://www.sublimetext.com/
+    sublime4 # https://www.sublimetext.com/
 
     # ---------------------------------------------------------------------
     # Mail
@@ -42,19 +38,12 @@
     mailspring
 
     # ---------------------------------------------------------------------
-    # Nix
-    # ---------------------------------------------------------------------
-
-    statix      # Lints and suggestions for the Nix programming language
-                # https://github.com/nerdypepper/statix
-
-    # ---------------------------------------------------------------------
     # Office utilities
     # ---------------------------------------------------------------------
 
     libreoffice
-    libsForQt5.merkuro      # Calendar: https://github.com/KDE/merkuro
-    libsForQt5.skanlite     # Scanner: https://github.com/KDE/skanlite
+    libsForQt5.merkuro # Calendar: https://github.com/KDE/merkuro
+    libsForQt5.skanlite # Scanner: https://github.com/KDE/skanlite
 
     # ---------------------------------------------------------------------
     # Others Utilities
@@ -68,13 +57,13 @@
     # Photo
     # ---------------------------------------------------------------------
 
-    digikam     # https://github.com/KDE/digikam
+    digikam # https://github.com/KDE/digikam
 
     # ---------------------------------------------------------------------
     # Video
     # ---------------------------------------------------------------------
 
-    libsForQt5.kdenlive     # Video editor: https://github.com/KDE/kdenlive
+    libsForQt5.kdenlive # Video editor: https://github.com/KDE/kdenlive
     vlc
 
     # ---------------------------------------------------------------------

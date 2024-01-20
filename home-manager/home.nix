@@ -1,8 +1,5 @@
-{ config, pkgs, ... }:
-
-{
-  imports =
-  [
+{pkgs, ...}: {
+  imports = [
     ./git.nix
   ];
 
@@ -23,8 +20,7 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages =  with pkgs; [
-
+    packages = with pkgs; [
       # ---------------------------------------------------------------------
       # Database
       # ---------------------------------------------------------------------
@@ -50,7 +46,6 @@
       gitprompt-rs
       rustup
     ];
-
   };
 
   # Whether to enable GNU Bourne-Again SHell.
