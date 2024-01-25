@@ -13,5 +13,9 @@
 
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
+
+    plymouth = {
+      enable = true;
+    };
   };
 }
