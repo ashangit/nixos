@@ -50,6 +50,17 @@
 
   # Whether to enable GNU Bourne-Again SHell.
   programs = {
+    alacritty = {
+      enable = true;
+      settings = {
+        font.size = 7;
+        scrolling.history = 100000;
+        window = {
+          decorations = "Full";
+          startup_mode = "Maximized";
+        };
+      };
+    };
     bash = {
       enable = true;
       enableCompletion = true;
