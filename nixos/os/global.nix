@@ -1,6 +1,7 @@
 {
   imports = [
     ./sysctl.nix
+    ./env.nix
     ./locale.nix
     ./documentation.nix
     ./kde.nix
