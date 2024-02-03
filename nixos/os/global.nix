@@ -4,6 +4,7 @@
     ./locale.nix
     ./documentation.nix
     ./kde.nix
+    ./security.nix
   ];
 
   # Delete all files in /tmp during boot.
