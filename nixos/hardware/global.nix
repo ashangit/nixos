@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   modulesPath,
   ...
@@ -7,7 +6,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./boot.nix
-    ./filesystems.nix
     ./network.nix
     ./video.nix
     ./audio.nix
@@ -17,7 +15,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     mcelog.enable = true;
     enableAllFirmware = true;
   };

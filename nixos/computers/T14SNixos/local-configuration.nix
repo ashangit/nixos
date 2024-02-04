@@ -1,4 +1,12 @@
 {pkgs, ...}: {
+  imports = [
+    /etc/nixos/common.nix
+    ./hardware.nix
+  ];
+
+  networking.hostName = "T14SNixos";
+
+  # KDE
   services = {
     xserver = {
       # Enable the X11 windowing system.

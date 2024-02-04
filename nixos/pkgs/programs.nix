@@ -12,6 +12,7 @@
       fuzzyCompletion = true;
       keybindings = true;
     };
+    git.enable = true;
     htop.enable = true;
     iftop.enable = true;
     iotop.enable = true;
