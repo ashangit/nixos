@@ -1,19 +1,23 @@
-{
-  users.users = {
-    nfraison = {
-      isNormalUser = true;
-      description = "Nicolas Fraison";
-      home = "/home/nfraison";
-      extraGroups = ["networkmanager" "wheel" "family" "docker" "scanner" "lp"];
-    };
+let
+  username = "nfraison";
+  fullname = "Nicolas Fraison";
+  email = "${username}@yahoo.fr";
+  home = "/home/${username}";
+  githubUsername = "ashangit";
+in {
+  users.users.nfraison = {
+    isNormalUser = true;
+    description = fullname;
+    home = home;
+    extraGroups = ["networkmanager" "wheel" "family" "docker" "scanner" "lp"];
   };
 
   home-manager.users.nfraison = {pkgs, ...}: {
     home = {
       # Home Manager needs a bit of information about you and the paths it should
       # manage.
-      username = "nfraison";
-      homeDirectory = "/home/nfraison";
+      username = username;
+      homeDirectory = home;
 
       # The home.packages option allows you to install Nix packages into your
       # environment.
@@ -78,10 +82,10 @@
         enable = true;
         extraConfig = {
           init.defaultBranch = "main";
-          github.user = "ashangit";
+          github.user = githubUsername;
           user = {
-            email = "nfraison@yahoo.fr";
-            name = "Nicolas Fraison";
+            email = email;
+            name = fullname;
           };
         };
         ignores = [
