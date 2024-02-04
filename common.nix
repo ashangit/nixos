@@ -7,7 +7,7 @@
     ./os/global.nix
     ./nix-configuration.nix
     ./pkgs/global.nix
-    ./users-configuration.nix
+    ./users/global.nix
     <home-manager/nixos>
   ];
 
