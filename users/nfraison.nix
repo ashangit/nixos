@@ -81,7 +81,7 @@ in {
       git = {
         enable = true;
         extraConfig = {
-          init.defaultBranch = "main";
+          init.defaultBranch = "master";
           github.user = githubUsername;
           user = {
             email = email;
