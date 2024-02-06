@@ -9,6 +9,7 @@
     ./boot.nix
     ./filesystems.nix
     ./network.nix
+    ./video.nix
     ./audio.nix
     ./bluetooth.nix
     ./printer.nix

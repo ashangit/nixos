@@ -15,5 +15,8 @@
     extraModulePackages = [];
 
     plymouth.enable = true;
+
+    # Delete all files in /tmp during boot.
+    tmp.cleanOnBoot = true;
   };
 }
