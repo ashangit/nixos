@@ -13,7 +13,6 @@
       enable = true;
       # Configure keymap in X11
       layout = "fr";
-      #videoDrivers = ["nvidia"];
       displayManager.sddm = {
         enable = true;
         wayland.enable = true;
