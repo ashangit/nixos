@@ -6,6 +6,10 @@
 
   networking.hostName = "T14SNixos";
 
+  environment.systemPackages = with pkgs; [
+    sddm-chili-theme
+  ];
+
   # KDE
   services = {
     xserver = {
@@ -17,6 +21,7 @@
       # Enable the KDE Plasma Desktop Environment.
       displayManager.sddm = {
         enable = true;
+        theme = "chili";
         autoNumlock = true;
       };
       desktopManager.plasma5.enable = true;
