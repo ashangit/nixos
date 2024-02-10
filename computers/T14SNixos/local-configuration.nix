@@ -26,6 +26,7 @@
   environment.plasma5.excludePackages = with pkgs.libsForQt5; [
     elisa
     gwenview
+    konsole
     oxygen
     plasma-browser-integration
   ];
