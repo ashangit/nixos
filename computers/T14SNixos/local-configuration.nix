@@ -1,4 +1,13 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  sddm-chili-theme = pkgs.sddm-chili-theme.overrideAttrs rec {
+    src = pkgs.fetchFromGitHub {
+      owner = "ashangit";
+      repo = "sddm-chili";
+      rev = "e55697de19ad981a7aa86db0807686cc5ae84b12";
+      sha256 = "LdZCfhOHyaQJAhPLt/9a1eCJO1uw2T4bo2Irg1bUvzk=";
+    };
+  };
+in {
   imports = [
     /etc/nixos/common.nix
     ./hardware.nix
