@@ -33,6 +33,7 @@ in {
         # IDE
         # ---------------------------------------------------------------------
 
+        jetbrains.clion
         jetbrains.dataspell
         jetbrains.goland
         jetbrains.idea-ultimate
