@@ -7,7 +7,9 @@
     };
 
     initrd = {
-      kernelModules = [];
+      kernelModules = [
+        "amdgpu"
+      ];
     };
 
     # Delete all files in /tmp during boot.
