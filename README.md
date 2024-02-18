@@ -25,3 +25,9 @@ home-manager switch
 nix-collect-garbage -d
 sudo nix-collect-garbage -d
 ```
+
+## Check store
+
+```shell
+nix-store --verify --check-content
+```
