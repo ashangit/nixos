@@ -53,6 +53,7 @@
     fzf
     gparted
     jq
+    libcgroup
     pciutils
     rsync
     wget
