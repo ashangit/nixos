@@ -4,7 +4,6 @@
 - add backup deployment
 - hyprland
   - configure waybar
-  - configure swaylock
-  - configure key switch wrokspace
+  - configure hyprlock
   - configure position external monitor
   - see other needed tool hyprland (screenshot, application finder bar)

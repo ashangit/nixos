@@ -169,8 +169,8 @@ in {
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
-          "$mainMod,TAB,workspace,e+1"
-          "ALT_L,TAB,workspace,e-1"
+          "$mainMod,TAB,workspace,e-1"
+          "ALT_L,TAB,workspace,e+1"
         ];
 
         bindl = [
@@ -201,7 +201,6 @@ in {
       };
     };
 
-    # Whether to enable GNU Bourne-Again SHell.
     programs = {
       alacritty = {
         enable = true;
@@ -233,6 +232,122 @@ in {
         };
         ignores = [
           ".idea"
+        ];
+      };
+      waybar = {
+        enable = true;
+        systemd.enable = true;
+        style = ''
+          ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
+
+          #battery {
+            color: #ffffff;
+            background-color: #26A65B;
+          }
+
+          #battery.warning:not(.charging) {
+            background-color: #DEA20B;
+            color: #ffffff;
+          }
+
+          #bluetooth {
+            color: #ffffff;
+            background-color: #1b2bbf;
+          }
+
+          #bluetooth.off, #bluetooth.disabled {
+            color: #ffffff;
+            background-color: #44454f;
+          }
+
+          window#waybar {
+            background: transparent;
+            border-bottom: none;
+            font-size: 18px;
+          }
+        '';
+        settings = [
+          {
+            height = 25;
+            layer = "top";
+            position = "top";
+            modules-left = [
+              "clock"
+              "hyprland/workspaces"
+            ];
+            modules-center = ["hyprland/window"];
+            modules-right = [
+              "cpu"
+              "memory"
+              "temperature"
+              "pulseaudio"
+              "network"
+              "bluetooth"
+              "battery"
+            ];
+            battery = {
+              interval = 15;
+              format = "{capacity}% {icon}";
+              format-icons = ["🪫" "🪫" "🔋" "🔋" "🔋"];
+              format-charging = "{capacity}% {icon}⚡";
+              format-plugged = "{capacity}% 🔌";
+              states = {
+                critical = 15;
+                warning = 30;
+              };
+            };
+            bluetooth = {
+              format = "{status} ᛒ";
+              format-connected = "{num_connections} connected ᛒ";
+              tooltip-format = "{num_connections} connected\n\n{controller_alias}\t{controller_address}";
+              tooltip-format-connected = "{num_connections} connected\n{device_enumerate}\n\n{controller_alias}\t{controller_address}";
+              on-click = "bluedevil-wizard";
+            };
+            clock = {
+              format-alt = "{:%Y-%m-%d}";
+              tooltip-format = "{:%Y-%m-%d | %H:%M}";
+            };
+            cpu = {
+              format = "{usage}% ";
+              tooltip = false;
+            };
+            memory = {format = "{}% ";};
+            network = {
+              interval = 1;
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
+              format-disconnected = "Disconnected ⚠";
+              format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
+              format-linked = "{ifname} (No IP) ";
+              format-wifi = "{essid} ({signalStrength}%) ";
+            };
+            pulseaudio = {
+              format = "{volume}% {icon} {format_source}";
+              format-bluetooth = "{volume}% {icon} {format_source}";
+              format-bluetooth-muted = " {icon} {format_source}";
+              format-icons = {
+                car = "";
+                default = ["" "" ""];
+                handsfree = "";
+                headphones = "";
+                headset = "";
+                phone = "";
+                portable = "";
+              };
+              format-muted = " {format_source}";
+              format-source = "{volume}% ";
+              format-source-muted = "";
+              on-click = "pavucontrol";
+            };
+            "hyprland/window" = {
+              max-length = 200;
+              separate-outputs = true;
+            };
+            temperature = {
+              critical-threshold = 80;
+              format = "{temperatureC}°C {icon}";
+              format-icons = ["" "" ""];
+            };
+          }
         ];
       };
 

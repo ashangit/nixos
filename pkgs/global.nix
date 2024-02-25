@@ -54,6 +54,7 @@
     gparted
     jq
     libcgroup
+    libsForQt5.bluedevil # bluetooth manager
     pciutils
     rsync
     wget
