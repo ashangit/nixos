@@ -158,8 +158,6 @@ in {
           "$mainMod, P, exec, pycharm-professional"
           "$mainMod, S, exec, sublime"
           "$mainMod, V, togglefloating,"
-          #"$mainMod, R, exec, $menu"
-          #"$mainMod, P, pseudo," # dwindle
           "$mainMod, J, togglesplit," # dwindle
 
           # Move focus with mainMod + arrow keys
@@ -171,12 +169,23 @@ in {
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
+          "$mainMod,TAB,workspace,e+1"
+          "ALT_L,TAB,workspace,e-1"
+        ];
+
+        bindl = [
+          # trigger when the switch is toggled
+          #",switch:[switch name],exec,swaylock"
+          # trigger when the switch is turning on
+          ",switch:on:[switch name],exec,hyprctl keyword monitor \"eDP-1,1920x1080@60,0x0,1\""
+          # trigger when the switch is turning off
+          ",switch:off:[switch name],exec,hyprctl keyword monitor \"eDP-1,disable\""
         ];
 
         bindel = [
           # Brightness keys mapping
-          ", XF86MonBrightnessDown, exec, brillo -U 10"
-          ", XF86MonBrightnessUp, exec, brillo -A 10"
+          ", XF86MonBrightnessDown, exec, brillo -U 5"
+          ", XF86MonBrightnessUp, exec, brillo -A 5"
 
           # Sound keys mapping
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
