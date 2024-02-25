@@ -166,6 +166,13 @@ in {
           "$mainMod, mouse_up, workspace, e-1"
         ];
 
+        bindel = [
+          # Sound keys mapping
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ];
+
         # Move/resize windows with mainMod + LMB/RMB and dragging
         bindm = [
           "$mainMod, mouse:272, movewindow"
