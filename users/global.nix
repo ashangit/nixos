@@ -9,7 +9,14 @@ in {
     isNormalUser = true;
     description = fullname;
     home = home;
-    extraGroups = ["networkmanager" "wheel" "family" "docker" "scanner" "lp"];
+    extraGroups = [
+      "docker"
+      "lp"
+      "networkmanager"
+      "scanner"
+      "video"
+      "wheel"
+    ];
   };
 
   home-manager.users.nfraison = {pkgs, ...}: {
@@ -167,6 +174,10 @@ in {
         ];
 
         bindel = [
+          # Brightness keys mapping
+          ", XF86MonBrightnessDown, exec, brillo -U 10"
+          ", XF86MonBrightnessUp, exec, brillo -A 10"
+
           # Sound keys mapping
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"

@@ -33,6 +33,8 @@
     plasma-browser-integration
   ];
 
+  hardware.brillo.enable = true;
+
   programs = {
     hyprland.enable = true;
     hyprland.xwayland.enable = true;
