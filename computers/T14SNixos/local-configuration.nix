@@ -36,5 +36,13 @@
   programs = {
     hyprland.enable = true;
     hyprland.xwayland.enable = true;
+    waybar.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    hyprpaper
+    hyprpicker
+    swaylock
+    xdg-desktop-portal-hyprland
+  ];
 }
