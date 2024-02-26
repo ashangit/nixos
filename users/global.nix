@@ -260,6 +260,16 @@ in {
             background-color: #44454f;
           }
 
+          #cpu.warning{
+            color: #ffa500;
+            background-color: #44454f;
+          }
+
+          #cpu.critical {
+            color: #ff0000;
+            background-color: #44454f;
+          }
+
           window#waybar {
             background: transparent;
             border-bottom: none;
@@ -324,8 +334,12 @@ in {
               };
             };
             cpu = {
-              format = "{usage}% ";
-              tooltip = false;
+              format = "{usage}% 🔲";
+              states = {
+                warning = 70;
+                critical = 90;
+              };
+              on-click = "plasma-systemmonitor --page-name Monitoring";
             };
             memory = {format = "{}% ";};
             network = {
