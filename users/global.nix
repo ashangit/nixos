@@ -351,6 +351,7 @@ in {
             };
             memory = {
               format = "{percentage}% 🎞️";
+              tooltip-format = "mem: {used:0.1f}G/{total:0.1f}G\nswap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
             };
             network = {
               interval = 1;
