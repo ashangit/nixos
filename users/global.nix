@@ -297,10 +297,12 @@ in {
               };
             };
             bluetooth = {
+              min-length = 5;
               format = "{status} ᛒ";
               format-connected = "{num_connections} connected ᛒ";
               tooltip-format = "{num_connections} connected\n\n{controller_alias}\t{controller_address}";
-              tooltip-format-connected = "{num_connections} connected\n{device_enumerate}\n\n{controller_alias}\t{controller_address}";
+              tooltip-format-connected = "{num_connections} connected:\n\t{device_enumerate}\n\n{controller_alias}\t{controller_address}";
+              tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
               on-click = "bluedevil-wizard";
             };
             clock = {
