@@ -283,6 +283,8 @@ in {
             position = "top";
             modules-left = [
               "clock"
+              "backlight"
+              "pulseaudio"
               "hyprland/workspaces"
             ];
             modules-center = ["hyprland/window"];
@@ -290,11 +292,17 @@ in {
               "cpu"
               "memory"
               "temperature"
-              "pulseaudio"
               "network"
               "bluetooth"
               "battery"
             ];
+            backlight = {
+              format = "{percent}% {icon}";
+              format-icons = [
+                "🔆"
+                "☀️"
+              ];
+            };
             battery = {
               interval = 15;
               format = "{capacity}% {icon}";
@@ -334,7 +342,7 @@ in {
               };
             };
             cpu = {
-              format = "{usage}% 🔲";
+              format = "{usage}% 🏃";
               states = {
                 warning = 70;
                 critical = 90;
