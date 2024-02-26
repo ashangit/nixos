@@ -349,7 +349,9 @@ in {
               };
               on-click = "plasma-systemmonitor --page-name Monitoring";
             };
-            memory = {format = "{}% ";};
+            memory = {
+              format = "{percentage}% 🎞️";
+            };
             network = {
               interval = 1;
               format-alt = "{ifname}: {ipaddr}/{cidr}";
