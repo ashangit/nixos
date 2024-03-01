@@ -56,6 +56,7 @@
     libcgroup
     libsForQt5.bluedevil # bluetooth manager
     libsForQt5.plasma-systemmonitor # system monitor
+    pavucontrol # sound control
     pciutils
     rsync
     wget

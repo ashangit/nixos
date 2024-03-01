@@ -11,6 +11,7 @@ in {
     home = home;
     extraGroups = [
       "docker"
+      "input"
       "lp"
       "networkmanager"
       "scanner"
@@ -246,7 +247,7 @@ in {
           }
 
           #battery.warning:not(.charging) {
-            background-color: #DEA20B;
+            background-color: #ff0000;
             color: #ffffff;
           }
 
@@ -261,13 +262,23 @@ in {
           }
 
           #cpu.warning{
-            color: #ffa500;
-            background-color: #44454f;
+            color: #ffffff;
+            background-color: #ffa500;
           }
 
           #cpu.critical {
+            color: #ffffff;
+            background-color: #ff0000;
+          }
+
+          #disk.warning{
+            color: #ffa500;
+            background-color: #ffa500;
+          }
+
+          #disk.critical {
             color: #ff0000;
-            background-color: #44454f;
+            background-color: #ff0000;
           }
 
           window#waybar {
@@ -283,6 +294,7 @@ in {
             position = "top";
             modules-left = [
               "clock"
+              "keyboard-state"
               "backlight"
               "pulseaudio"
               "hyprland/workspaces"
@@ -291,6 +303,7 @@ in {
             modules-right = [
               "cpu"
               "memory"
+              "disk"
               "temperature"
               "network"
               "bluetooth"
@@ -349,34 +362,30 @@ in {
               };
               on-click = "plasma-systemmonitor --page-name Monitoring";
             };
+            disk = {
+              interval = 15;
+              format = "{percentage_used}% 💾";
+              states = {
+                warning = 70;
+                critical = 90;
+              };
+            };
+            keyboard-state = {
+              numlock = true;
+              capslock = true;
+            };
             memory = {
               format = "{percentage}% 🎞️";
               tooltip-format = "mem: {used:0.1f}G/{total:0.1f}G\nswap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
             };
             network = {
-              interval = 1;
-              format-alt = "{ifname}: {ipaddr}/{cidr}";
-              format-disconnected = "Disconnected ⚠";
-              format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
-              format-linked = "{ifname} (No IP) ";
-              format-wifi = "{essid} ({signalStrength}%) ";
+              interval = 15;
+              format-wifi = "{signalStrength}% 🛜";
+              tooltip-format-wifi = "{essid} ({signalStrength}%)";
             };
             pulseaudio = {
-              format = "{volume}% {icon} {format_source}";
-              format-bluetooth = "{volume}% {icon} {format_source}";
-              format-bluetooth-muted = " {icon} {format_source}";
-              format-icons = {
-                car = "";
-                default = ["" "" ""];
-                handsfree = "";
-                headphones = "";
-                headset = "";
-                phone = "";
-                portable = "";
-              };
-              format-muted = " {format_source}";
-              format-source = "{volume}% ";
-              format-source-muted = "";
+              format = "{volume}% 🔊";
+              format-muted = "🔇";
               on-click = "pavucontrol";
             };
             "hyprland/window" = {
@@ -385,8 +394,7 @@ in {
             };
             temperature = {
               critical-threshold = 80;
-              format = "{temperatureC}°C {icon}";
-              format-icons = ["" "" ""];
+              format = "{temperatureC}°C";
             };
           }
         ];
