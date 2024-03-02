@@ -239,98 +239,70 @@ in {
         enable = true;
         systemd.enable = true;
         style = ''
-          ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
+          * {
+              border:        none;
+              border-radius: 0;
+              font-family:   "Font Awesome", Roboto, Helvetica, Arial, sans-serif;
+              font-size:     15px;
+              min-height:    0;
+            }
 
-          #battery {
-            color: #ffffff;
-            background-color: #26A65B;
-          }
+            window#waybar {
+              background:    transparent;
+              border-bottom: 1px solid rgba(100, 114, 125, 0.5);;
+              color:         white;
+            }
 
-          #battery.warning:not(.charging) {
-            background-color: #ff0000;
-            color: #ffffff;
-          }
+            tooltip {
+              border: 1px solid rgba(100, 114, 125, 0.5);
+            }
 
-          #bluetooth {
-            color: #ffffff;
-            background-color: #1b2bbf;
-          }
-
-          #bluetooth.off, #bluetooth.disabled {
-            color: #ffffff;
-            background-color: #44454f;
-          }
-
-          #cpu.warning{
-            color: #ffffff;
-            background-color: #ffa500;
-          }
-
-          #cpu.critical {
-            color: #ffffff;
-            background-color: #ff0000;
-          }
-
-          #disk.warning{
-            color: #ffa500;
-            background-color: #ffa500;
-          }
-
-          #disk.critical {
-            color: #ff0000;
-            background-color: #ff0000;
-          }
-
-          window#waybar {
-            background: transparent;
-            border-bottom: none;
-            font-size: 18px;
-          }
+            tooltip label {
+              color: white;
+            }
+            #cpu, #clock, #battery, #memory, #disk, #disk#home, #temperature, #bluetooth, #backlight, #pulseaudio, #network  {
+              padding: 0 10px;
+            }
         '';
         settings = [
           {
-            height = 25;
+            height = 32;
             layer = "top";
             position = "top";
             modules-left = [
-              "clock"
-              "keyboard-state"
-              "backlight"
-              "pulseaudio"
               "hyprland/workspaces"
             ];
-            modules-center = ["hyprland/window"];
+            modules-center = [
+              "clock"
+            ];
             modules-right = [
               "cpu"
               "memory"
               "disk"
-              "temperature"
+              "disk#home"
+              "backlight"
+              "pulseaudio"
               "network"
               "bluetooth"
+              "temperature"
               "battery"
             ];
             backlight = {
-              format = "{percent}% {icon}";
-              format-icons = [
-                "🔆"
-                "☀️"
-              ];
+              format = "{icon} {percent}%";
+              format-icons = ["󰃚" "󰃛" "󰃜" "󰃝" "󰃞" "󰃟" "󰃠"];
             };
             battery = {
-              interval = 15;
-              format = "{capacity}% {icon}";
-              format-icons = ["🪫" "🪫" "🔋" "🔋" "🔋"];
-              format-charging = "{capacity}% {icon}⚡";
-              format-plugged = "{capacity}% 🔌";
-              states = {
-                critical = 15;
-                warning = 30;
-              };
+              interval = 10;
+              format = "{icon} {capacity}%";
+              format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂"];
+              format-charging = "󰂄 {capacity}%";
+              format-plugged = "󱐥 {capacity}% ";
             };
             bluetooth = {
-              min-length = 5;
-              format = "{status} ᛒ";
-              format-connected = "{num_connections} connected ᛒ";
+              format = "{status}";
+              format-on = "󰂯";
+              format-off = "󰂲";
+              format-connected = "󰂱";
               tooltip-format = "{num_connections} connected\n\n{controller_alias}\t{controller_address}";
               tooltip-format-connected = "{num_connections} connected:\n\t{device_enumerate}\n\n{controller_alias}\t{controller_address}";
               tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -355,46 +327,44 @@ in {
               };
             };
             cpu = {
-              format = "{usage}% 🏃";
-              states = {
-                warning = 70;
-                critical = 90;
-              };
+              interval = 10;
+              format = " {usage}%";
               on-click = "plasma-systemmonitor --page-name Monitoring";
             };
             disk = {
-              interval = 15;
-              format = "{percentage_used}% 💾";
-              states = {
-                warning = 70;
-                critical = 90;
-              };
+              interval = 10;
+              path = "/";
+              format = "/ {percentage_used}%";
             };
-            keyboard-state = {
-              numlock = true;
-              capslock = true;
+            "disk#home" = {
+              interval = 10;
+              path = "/home";
+              format = "󰋜 {percentage_used}%";
             };
             memory = {
-              format = "{percentage}% 🎞️";
+              format = "󰧑 {percentage}%";
               tooltip-format = "mem: {used:0.1f}G/{total:0.1f}G\nswap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
             };
             network = {
-              interval = 15;
-              format-wifi = "{signalStrength}% 🛜";
+              interval = 10;
+              format-wifi = "{icon}";
+              format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
               tooltip-format-wifi = "{essid} ({signalStrength}%)";
             };
             pulseaudio = {
-              format = "{volume}% 🔊";
-              format-muted = "🔇";
+              format = "{icon} {volume}%";
+              format-muted = "󰝟";
+              format-icons = {
+                headphone = "󰋋";
+                headset = "󰋎";
+                default = ["󰕿" "󰖀" "󰕾"];
+              };
               on-click = "pavucontrol";
             };
-            "hyprland/window" = {
-              max-length = 200;
-              separate-outputs = true;
-            };
             temperature = {
+              interval = 10;
               critical-threshold = 80;
-              format = "{temperatureC}°C";
+              format = "󰔏 {temperatureC}°C";
             };
           }
         ];
