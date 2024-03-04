@@ -249,7 +249,7 @@ in {
 
             window#waybar {
               background:    transparent;
-              border-bottom: 1px solid rgba(100, 114, 125, 0.5);;
+              border-bottom: none;
               color:         white;
             }
 
@@ -260,20 +260,63 @@ in {
             tooltip label {
               color: white;
             }
-            #cpu, #clock, #battery, #memory, #disk, #disk#home, #temperature, #bluetooth, #backlight, #pulseaudio, #network  {
+
+            #backlight,
+            #battery,
+            #bluetooth,
+            #clock,
+            #cpu,
+            #custom-nixos,
+            #custom-lock,
+            #custom-logout,
+            #custom-reboot,
+            #custom-poweroff,
+            #disk,
+            #disk#home,
+            #memory,
+            #network,
+            #pulseaudio,
+            #temperature,
+            #window,
+            #workspaces  {
               padding: 0 10px;
+            }
+
+            /* If workspaces is the leftmost module, omit left margin */
+            .modules-left > widget:first-child > #workspaces {
+                margin-left: 0;
+            }
+
+            /* If workspaces is the rightmost module, omit right margin */
+            .modules-right > widget:last-child > #workspaces {
+                margin-right: 0;
+            }
+
+            workspaces button {
+                padding: 0 5px;
+                background-color: transparent;
+                color: #ffffff;
+            }
+
+            #workspaces button:hover {
+                background: black;
+            }
+
+            #workspaces button.focused {
+                background-color: #64727D;
+                box-shadow: inset 0 -3px #ffffff;
             }
         '';
         settings = [
           {
-            height = 32;
+            height = 35;
             layer = "top";
             position = "top";
             modules-left = [
-              "hyprland/workspaces"
-            ];
-            modules-center = [
+              "group/nixos"
               "clock"
+              "hyprland/workspaces"
+              "hyprland/window"
             ];
             modules-right = [
               "cpu"
@@ -309,7 +352,7 @@ in {
               on-click = "bluedevil-wizard";
             };
             clock = {
-              format = "{:%d-%m-%Y %H:%M}";
+              format = "{:%H:%M}";
               tooltip-format = "<tt><small>{calendar}</small></tt>";
               calendar = {
                 mode = "year";
@@ -331,6 +374,30 @@ in {
               format = " {usage}%";
               on-click = "plasma-systemmonitor --page-name Monitoring";
             };
+            "custom/nixos" = {
+              format = "";
+              tooltip = false;
+            };
+            "custom/lock" = {
+              format = "󰌾";
+              tooltip = false;
+              on-click = "swaylock";
+            };
+            "custom/logout" = {
+              format = "󰍃";
+              tooltip = false;
+              on-click = "hyprctl dispatch exit";
+            };
+            "custom/reboot" = {
+              format = "󰜉";
+              tooltip = false;
+              on-click = "reboot";
+            };
+            "custom/poweroff" = {
+              format = "󰐥";
+              tooltip = false;
+              on-click = "shutdown now";
+            };
             disk = {
               interval = 10;
               path = "/";
@@ -341,9 +408,33 @@ in {
               path = "/home";
               format = "󰋜 {percentage_used}%";
             };
+            "group/nixos" = {
+              orientation = "inherit";
+              modules = [
+                "custom/nixos"
+                "custom/lock"
+                "custom/logout"
+                "custom/reboot"
+                "custom/poweroff"
+              ];
+              drawer = {
+                transition-duration = 500;
+                children-class = "not-power";
+                transition-left-to-right = false;
+              };
+            };
+            "hyprland/window" = {
+              format = "󰥭 {title}";
+            };
+            "hyprland/workspaces" = {
+              "persistent-workspaces" = {
+                "*" = 2;
+              };
+            };
             memory = {
               format = "󰧑 {percentage}%";
               tooltip-format = "mem: {used:0.1f}G/{total:0.1f}G\nswap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
+              on-click = "plasma-systemmonitor --page-name Monitoring";
             };
             network = {
               interval = 10;
