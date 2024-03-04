@@ -300,11 +300,11 @@ in {
 
             #workspaces button:hover {
                 background: black;
+                box-shadow: inset 0 -3px #ffffff;
             }
 
-            #workspaces button.focused {
-                background-color: #64727D;
-                box-shadow: inset 0 -3px #ffffff;
+            #workspaces button.active {
+                background-color: #4e5861;
             }
         '';
         settings = [
