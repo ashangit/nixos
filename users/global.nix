@@ -92,7 +92,7 @@ in {
           gaps_out = 0; # gaps between windows and monitor edges
           cursor_inactive_timeout = 5; # in seconds, after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
           resize_on_border = true; # enables resizing windows by clicking and dragging on borders and gaps
-          extend_border_grab_area = 30; # extends the area around the border where you can click and drag on, only used when general:resize_on_border is on.
+          extend_border_grab_area = 15; # extends the area around the border where you can click and drag on, only used when general:resize_on_border is on.
           allow_tearing = false; # master switch for allowing tearing to occur. See https://wiki.hyprland.org/Configuring/Tearing/.
         };
 
@@ -371,7 +371,7 @@ in {
             };
             cpu = {
               interval = 10;
-              format = " {usage}%";
+              format = "  {usage}%";
               on-click = "plasma-systemmonitor --page-name Monitoring";
             };
             "custom/nixos" = {
