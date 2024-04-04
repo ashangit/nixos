@@ -14,7 +14,7 @@ markdownlint -f *
 ## Update package
 
 ```shell
-sudo nixos-rebuild switch --upgrade
+sudo nixos-rebuild switch --upgrade-all
 ```
 
 ## Full GC
@@ -27,5 +27,5 @@ sudo nix-collect-garbage -d
 ## Check store
 
 ```shell
-nix-store --verify --check-contents --repair
+sudo nix-store --verify --check-contents --repair
 ```
