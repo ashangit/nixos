@@ -77,6 +77,7 @@ in {
       systemd.enable = true;
       xwayland.enable = true;
 
+      # TODO: swaylock, wlogout, swayidle
       settings = {
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor = [
