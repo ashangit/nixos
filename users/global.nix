@@ -27,6 +27,11 @@ in {
       username = username;
       homeDirectory = home;
 
+      file = {
+        ".config/hypr/hyprpaper.conf".source = ./files/hyprpaper.conf;
+        ".config/hypr/wallpaper.png".source = ./files/wallpaper.png;
+      };
+
       # The home.packages option allows you to install Nix packages into your
       # environment.
       packages = with pkgs; [
@@ -198,6 +203,10 @@ in {
         bindm = [
           "$mainMod, mouse:272, movewindow"
           "$mainMod, mouse:273, resizewindow"
+        ];
+
+        exec-once = [
+          "hyprpaper &"
         ];
       };
     };
