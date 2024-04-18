@@ -286,7 +286,6 @@ in {
             #memory,
             #network,
             #pulseaudio,
-            #temperature,
             #window,
             #workspaces  {
               padding: 0 10px;
@@ -324,8 +323,14 @@ in {
             position = "top";
             modules-left = [
               "group/nixos"
-              "clock"
               "hyprland/workspaces"
+              "custom/terminal"
+              "custom/firefox"
+              "custom/mail"
+              "custom/intellij"
+              "custom/pycharm"
+            ];
+            modules-center = [
               "hyprland/window"
             ];
             modules-right = [
@@ -337,8 +342,8 @@ in {
               "pulseaudio"
               "network"
               "bluetooth"
-              "temperature"
               "battery"
+              "clock"
             ];
             backlight = {
               format = "{icon} {percent}%";
@@ -383,6 +388,36 @@ in {
               interval = 10;
               format = "  {usage}%";
               on-click = "plasma-systemmonitor --page-name Monitoring";
+            };
+            "custom/terminal" = {
+              format = "";
+              tooltip = false;
+              on-click = "alacritty";
+            };
+            "custom/firefox" = {
+              format = "󰈹";
+              tooltip = false;
+              on-click = "firefox";
+            };
+            "custom/intellij" = {
+              format = "";
+              tooltip = false;
+              on-click = "idea-ultimate";
+            };
+            "custom/pycharm" = {
+              format = "󰌠";
+              tooltip = false;
+              on-click = "pycharm-professional";
+            };
+            "custom/mail" = {
+              format = "󰺻";
+              tooltip = false;
+              on-click = "mailspring";
+            };
+            "custom/filemanager" = {
+              format = "󰉋";
+              tooltip = false;
+              on-click = "dolphin";
             };
             "custom/nixos" = {
               format = "";
@@ -434,7 +469,7 @@ in {
               };
             };
             "hyprland/window" = {
-              format = "󰥭 {title}";
+              format = "{title}";
             };
             "hyprland/workspaces" = {
               "persistent-workspaces" = {
@@ -461,11 +496,6 @@ in {
                 default = ["󰕿" "󰖀" "󰕾"];
               };
               on-click = "pavucontrol";
-            };
-            temperature = {
-              interval = 10;
-              critical-threshold = 80;
-              format = "󰔏 {temperatureC}°C";
             };
           }
         ];
