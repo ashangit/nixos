@@ -59,7 +59,7 @@ in {
         # ---------------------------------------------------------------------
 
         gitprompt-rs
-        rustup
+        gnumake
       ];
 
       # This value determines the Home Manager release that your configuration is

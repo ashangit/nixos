@@ -5,27 +5,23 @@ Nixos configuration
 ## Correct files
 
 ```shell
-alejandra *
-deadnix -e
-statix fix
-markdownlint -f *
+make lint
 ```
 
 ## Update package
 
 ```shell
-sudo nixos-rebuild switch --upgrade-all
+make upgrade
 ```
 
 ## Full GC
 
 ```shell
-nix-collect-garbage -d
-sudo nix-collect-garbage -d
+make clean
 ```
 
 ## Check store
 
 ```shell
-sudo nix-store --verify --check-contents --repair
+make repair
 ```
