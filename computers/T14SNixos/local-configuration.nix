@@ -38,12 +38,15 @@
   programs = {
     hyprland.enable = true;
     hyprland.xwayland.enable = true;
-    # waybar.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
+    nerdfonts
     hyprpaper
     hyprpicker
+    swayidle
+    swaylock-effects
+    wlogout
     xdg-desktop-portal-hyprland
   ];
 }

@@ -30,6 +30,10 @@ in {
       file = {
         ".config/hypr/hyprpaper.conf".source = ./files/hyprpaper.conf;
         ".config/hypr/wallpaper.png".source = ./files/wallpaper.png;
+        ".swaylock/config".source = ./files/swaylock.conf;
+        ".swaylock/wallpaper.png".source = ./files/wallpaper.png;
+        ".config/swayidle/config".source = ./files/swayidle.conf;
+        ".config/wlogout/layout".source = ./files/wlogout.conf;
       };
 
       # The home.packages option allows you to install Nix packages into your
@@ -47,7 +51,6 @@ in {
         # ---------------------------------------------------------------------
 
         jetbrains.clion
-        jetbrains.dataspell
         jetbrains.goland
         jetbrains.idea-ultimate
         jetbrains.pycharm-professional
@@ -77,7 +80,6 @@ in {
       systemd.enable = true;
       xwayland.enable = true;
 
-      # TODO: swaylock, wlogout, swayidle
       settings = {
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor = [
@@ -208,6 +210,7 @@ in {
 
         exec-once = [
           "hyprpaper &"
+          "swayidle -w"
         ];
       };
     };
@@ -258,7 +261,7 @@ in {
             }
 
             window#waybar {
-              background:    transparent;
+              background:    black;
               border-bottom: none;
               color:         white;
             }
@@ -277,10 +280,6 @@ in {
             #clock,
             #cpu,
             #custom-nixos,
-            #custom-lock,
-            #custom-logout,
-            #custom-reboot,
-            #custom-poweroff,
             #disk,
             #disk#home,
             #memory,
@@ -291,29 +290,28 @@ in {
               padding: 0 10px;
             }
 
-            /* If workspaces is the leftmost module, omit left margin */
-            .modules-left > widget:first-child > #workspaces {
-                margin-left: 0;
+            #custom-terminal,
+            #custom-filemanager,
+            #custom-firefox,
+            #custom-mail,
+            #custom-pycharm  {
+              padding: 0 5px;
             }
 
-            /* If workspaces is the rightmost module, omit right margin */
-            .modules-right > widget:last-child > #workspaces {
-                margin-right: 0;
-            }
-
-            workspaces button {
-                padding: 0 5px;
-                background-color: transparent;
-                color: #ffffff;
+            #custom-terminal:hover,
+            #custom-filemanager:hover,
+            #custom-firefox:hover,
+            #custom-mail:hover,
+            #custom-pycharm:hover {
+                background: #191919;
             }
 
             #workspaces button:hover {
-                background: black;
-                box-shadow: inset 0 -3px #ffffff;
+                background: #191919;
             }
 
             #workspaces button.active {
-                background-color: #4e5861;
+                box-shadow: inset 0 -3px #ffffff;
             }
         '';
         settings = [
@@ -322,12 +320,12 @@ in {
             layer = "top";
             position = "top";
             modules-left = [
-              "group/nixos"
+              "custom/nixos"
               "hyprland/workspaces"
               "custom/terminal"
+              "custom/filemanager"
               "custom/firefox"
               "custom/mail"
-              "custom/intellij"
               "custom/pycharm"
             ];
             modules-center = [
@@ -364,7 +362,7 @@ in {
               tooltip-format = "{num_connections} connected\n\n{controller_alias}\t{controller_address}";
               tooltip-format-connected = "{num_connections} connected:\n\t{device_enumerate}\n\n{controller_alias}\t{controller_address}";
               tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-              on-click = "bluedevil-wizard";
+              on-click = "/run/current-system/sw/bin/bluedevil-wizard";
             };
             clock = {
               format = "{:%H:%M}";
@@ -387,61 +385,37 @@ in {
             cpu = {
               interval = 10;
               format = "  {usage}%";
-              on-click = "plasma-systemmonitor --page-name Monitoring";
+              on-click = "/run/current-system/sw/bin/plasma-systemmonitor --page-name Monitoring";
             };
             "custom/terminal" = {
               format = "";
               tooltip = false;
-              on-click = "alacritty";
+              on-click = "/home/nfraison/.nix-profile/bin/alacritty";
             };
             "custom/firefox" = {
               format = "󰈹";
               tooltip = false;
-              on-click = "firefox";
-            };
-            "custom/intellij" = {
-              format = "";
-              tooltip = false;
-              on-click = "idea-ultimate";
+              on-click = "/run/current-system/sw/bin/firefox";
             };
             "custom/pycharm" = {
               format = "󰌠";
               tooltip = false;
-              on-click = "pycharm-professional";
+              on-click = "/home/nfraison/.nix-profile/bin/pycharm-professional";
             };
             "custom/mail" = {
               format = "󰺻";
               tooltip = false;
-              on-click = "mailspring";
+              on-click = "/run/current-system/sw/bin/mailspring";
             };
             "custom/filemanager" = {
               format = "󰉋";
               tooltip = false;
-              on-click = "dolphin";
+              on-click = "/run/current-system/sw/bin/dolphin";
             };
             "custom/nixos" = {
               format = "";
               tooltip = false;
-            };
-            "custom/lock" = {
-              format = "󰌾";
-              tooltip = false;
-              on-click = "swaylock";
-            };
-            "custom/logout" = {
-              format = "󰍃";
-              tooltip = false;
-              on-click = "hyprctl dispatch exit";
-            };
-            "custom/reboot" = {
-              format = "󰜉";
-              tooltip = false;
-              on-click = "reboot";
-            };
-            "custom/poweroff" = {
-              format = "󰐥";
-              tooltip = false;
-              on-click = "shutdown now";
+              on-click = "/run/current-system/sw/bin/wlogout --protocol layer-shell";
             };
             disk = {
               interval = 10;
@@ -452,21 +426,6 @@ in {
               interval = 10;
               path = "/home";
               format = "󰋜 {percentage_used}%";
-            };
-            "group/nixos" = {
-              orientation = "inherit";
-              modules = [
-                "custom/nixos"
-                "custom/lock"
-                "custom/logout"
-                "custom/reboot"
-                "custom/poweroff"
-              ];
-              drawer = {
-                transition-duration = 500;
-                children-class = "not-power";
-                transition-left-to-right = false;
-              };
             };
             "hyprland/window" = {
               format = "{title}";
@@ -479,7 +438,7 @@ in {
             memory = {
               format = "󰧑 {percentage}%";
               tooltip-format = "mem: {used:0.1f}G/{total:0.1f}G\nswap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
-              on-click = "plasma-systemmonitor --page-name Monitoring";
+              on-click = "/run/current-system/sw/bin/plasma-systemmonitor --page-name Monitoring";
             };
             network = {
               interval = 10;
@@ -495,7 +454,7 @@ in {
                 headset = "󰋎";
                 default = ["󰕿" "󰖀" "󰕾"];
               };
-              on-click = "pavucontrol";
+              on-click = "/run/current-system/sw/bin/pavucontrol";
             };
           }
         ];

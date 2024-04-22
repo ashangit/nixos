@@ -15,6 +15,8 @@
     "openssl-1.1.1w"
   ];
 
+  security.pam.services.swaylock = {};
+
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
     # ---------------------------------------------------------------------
@@ -56,11 +58,9 @@
     libcgroup
     libsForQt5.bluedevil # bluetooth manager
     libsForQt5.plasma-systemmonitor # system monitor
-    nerdfonts
     pavucontrol # sound control
     pciutils
     rsync
-    swaylock
     wget
 
     # ---------------------------------------------------------------------
