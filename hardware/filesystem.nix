@@ -1,19 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
-  boot = {
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
-
-    initrd = {
-      availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-    };
-  };
-
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
+{...}: {
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/c4f5e094-ede7-4f58-9c8a-145cad9f10ac";
