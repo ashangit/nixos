@@ -1,95 +1,114 @@
-{pkgs, ...}: {
-  imports = [
-    ./programs.nix
-    ./container.nix
-    ./logiops.nix
-    ./tlp.nix
-  ];
+let
+  unstable = import (fetchTarball "channel:nixpkgs-unstable") {};
+in
+  {pkgs, ...}: {
+    imports = [
+      ./programs.nix
+      ./container.nix
+      ./logiops.nix
+      ./tlp.nix
+    ];
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
 
-  # Allow insecure packages
-  nixpkgs.config.permittedInsecurePackages = [
-    "mailspring-1.12.0"
-    "openssl-1.1.1w"
-  ];
+    # Allow insecure packages
+    nixpkgs.config.permittedInsecurePackages = [
+      "openssl-1.1.1w"
+    ];
 
-  security.pam.services.swaylock = {};
+    security.pam.services.swaylock = {};
 
-  # List packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    # ---------------------------------------------------------------------
-    # Archive
-    # ---------------------------------------------------------------------
+    # List packages installed in system profile
+    environment.systemPackages = with pkgs; [
+      # ---------------------------------------------------------------------
+      # Archive
+      # ---------------------------------------------------------------------
 
-    gzip
-    xz
-    zip
-    zstd
+      gzip
+      xz
+      zip
+      zstd
 
-    # ---------------------------------------------------------------------
-    # Editor
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Database
+      # ---------------------------------------------------------------------
 
-    sublime4 # https://www.sublimetext.com/
+      dbeaver
+      sqlitebrowser
 
-    # ---------------------------------------------------------------------
-    # Mail
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # IDE
+      # ---------------------------------------------------------------------
 
-    mailspring
+      unstable.jetbrains.clion
+      unstable.jetbrains.goland
+      unstable.jetbrains.idea-ultimate
+      unstable.jetbrains.pycharm-professional
+      unstable.jetbrains.rust-rover
+      unstable.jetbrains.webstorm
 
-    # ---------------------------------------------------------------------
-    # Office utilities
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Editor
+      # ---------------------------------------------------------------------
 
-    libreoffice
-    libsForQt5.merkuro # Calendar: https://github.com/KDE/merkuro
-    libsForQt5.skanlite # Scanner: https://github.com/KDE/skanlite
+      sublime4 # https://www.sublimetext.com/
 
-    # ---------------------------------------------------------------------
-    # Others Utilities
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Mail
+      # ---------------------------------------------------------------------
 
-    fzf
-    gparted
-    jq
-    libcgroup
-    libsForQt5.bluedevil # bluetooth manager
-    libsForQt5.plasma-systemmonitor # system monitor
-    pavucontrol # sound control
-    pciutils
-    rsync
-    wget
+      unstable.mailspring
 
-    # ---------------------------------------------------------------------
-    # Photo
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Office utilities
+      # ---------------------------------------------------------------------
 
-    digikam # https://github.com/KDE/digikam
-    krita
+      libreoffice
+      libsForQt5.merkuro # Calendar: https://github.com/KDE/merkuro
+      libsForQt5.skanlite # Scanner: https://github.com/KDE/skanlite
 
-    # ---------------------------------------------------------------------
-    # Video
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Others Utilities
+      # ---------------------------------------------------------------------
 
-    libsForQt5.kdenlive # Video editor: https://github.com/KDE/kdenlive
-    vlc
+      fzf
+      gitprompt-rs
+      gnumake
+      gparted
+      jq
+      libcgroup
+      pciutils
+      rsync
+      wget
 
-    # ---------------------------------------------------------------------
-    # Video Conf
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Photo
+      # ---------------------------------------------------------------------
 
-    skypeforlinux
-    zoom-us
+      digikam # https://github.com/KDE/digikam
+      krita
 
-    # ---------------------------------------------------------------------
-    # Security
-    # ---------------------------------------------------------------------
+      # ---------------------------------------------------------------------
+      # Video
+      # ---------------------------------------------------------------------
 
-    bitwarden
-    pinentry-qt
-    gnupg
-  ];
-}
+      libsForQt5.kdenlive # Video editor: https://github.com/KDE/kdenlive
+      vlc
+
+      # ---------------------------------------------------------------------
+      # Video Conf
+      # ---------------------------------------------------------------------
+
+      skypeforlinux
+      zoom-us
+
+      # ---------------------------------------------------------------------
+      # Security
+      # ---------------------------------------------------------------------
+
+      bitwarden
+      pinentry-qt
+      gnupg
+    ];
+  }

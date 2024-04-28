@@ -4,7 +4,6 @@
     ./env.nix
     ./locale.nix
     ./documentation.nix
-    ./security.nix
   ];
 
   # Set your time zone.

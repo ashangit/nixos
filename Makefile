@@ -1,7 +1,7 @@
 .PHONY: lint upgrade clean repair
 
 lint:
-	nix-shell --command "alejandra *;deadnix -e;statix fix"
+	nix-shell --command "alejandra *;deadnix -e"
 
 upgrade:
 	sudo nixos-rebuild switch --upgrade-all

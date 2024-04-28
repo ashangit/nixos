@@ -20,7 +20,7 @@ in {
     ];
   };
 
-  home-manager.users.nfraison = {pkgs, ...}: {
+  home-manager.users.nfraison = {...}: {
     home = {
       # Home Manager needs a bit of information about you and the paths it should
       # manage.
@@ -35,35 +35,6 @@ in {
         ".config/swayidle/config".source = ./files/swayidle.conf;
         ".config/wlogout/layout".source = ./files/wlogout.conf;
       };
-
-      # The home.packages option allows you to install Nix packages into your
-      # environment.
-      packages = with pkgs; [
-        # ---------------------------------------------------------------------
-        # Database
-        # ---------------------------------------------------------------------
-
-        dbeaver
-        sqlitebrowser
-
-        # ---------------------------------------------------------------------
-        # IDE
-        # ---------------------------------------------------------------------
-
-        jetbrains.clion
-        jetbrains.goland
-        jetbrains.idea-ultimate
-        jetbrains.pycharm-professional
-        jetbrains.rust-rover
-        jetbrains.webstorm
-
-        # ---------------------------------------------------------------------
-        # Dev utilities
-        # ---------------------------------------------------------------------
-
-        gitprompt-rs
-        gnumake
-      ];
 
       # This value determines the Home Manager release that your configuration is
       # compatible with. This helps avoid breakage when a new Home Manager release
@@ -149,6 +120,7 @@ in {
 
         # https://wiki.hyprland.org/Configuring/Variables/#misc
         misc = {
+          disable_hyprland_logo = true;
         };
 
         # https://wiki.hyprland.org/Configuring/Variables/#xwayland
@@ -160,12 +132,12 @@ in {
         # https://wiki.hyprland.org/Configuring/Binds/
         bind = [
           "$mainMod, A, exec, alacritty"
-          "$mainMod, C, killactive,"
-          "$mainMod, Q, exit,"
+          "$mainMod, Q, killactive,"
           "$mainMod, E, exec, dolphin"
           "$mainMod, F, exec, firefox"
           "$mainMod, P, exec, pycharm-professional"
           "$mainMod, S, exec, sublime"
+          "$mainMod, SPACE, exec, wofi -i --show run"
           "$mainMod, V, togglefloating,"
           "$mainMod, J, togglesplit," # dwindle
 
@@ -184,7 +156,7 @@ in {
 
         bindl = [
           # trigger when the switch is toggled
-          #",switch:[switch name],exec,swaylock"
+          ",switch:[switch name],exec,swaylock"
           # trigger when the switch is turning on
           ",switch:on:[switch name],exec,hyprctl keyword monitor \"eDP-1,1920x1080@60,0x0,1\""
           # trigger when the switch is turning off
@@ -219,7 +191,7 @@ in {
       alacritty = {
         enable = true;
         settings = {
-          font.size = 7;
+          font.size = 9;
           scrolling.history = 100000;
           window = {
             decorations = "Full";
@@ -294,7 +266,8 @@ in {
             #custom-filemanager,
             #custom-firefox,
             #custom-mail,
-            #custom-pycharm  {
+            #custom-pycharm,
+            #custom-bitwarden {
               padding: 0 5px;
             }
 
@@ -302,7 +275,8 @@ in {
             #custom-filemanager:hover,
             #custom-firefox:hover,
             #custom-mail:hover,
-            #custom-pycharm:hover {
+            #custom-pycharm:hover,
+            #custom-bitwarden:hover  {
                 background: #191919;
             }
 
@@ -327,6 +301,7 @@ in {
               "custom/firefox"
               "custom/mail"
               "custom/pycharm"
+              "custom/bitwarden"
             ];
             modules-center = [
               "hyprland/window"
@@ -411,6 +386,11 @@ in {
               format = "󰉋";
               tooltip = false;
               on-click = "/run/current-system/sw/bin/dolphin";
+            };
+            "custom/bitwarden" = {
+              format = "󰞀";
+              tooltip = false;
+              on-click = "/run/current-system/sw/bin/bitwarden";
             };
             "custom/nixos" = {
               format = "";
