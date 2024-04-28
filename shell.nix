@@ -1,7 +1,7 @@
 with (import <nixpkgs> {});
   mkShell {
     shellHook = ''
-      ${(import ./default.nix).pre-commit-check.shellHook}
+      ${(import ./pre-commit.nix).pre-commit-check.shellHook}
     '';
     nativeBuildInputs = with pkgs.buildPackages; [
       # Check tools
