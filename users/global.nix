@@ -28,6 +28,7 @@ in {
       homeDirectory = home;
 
       file = {
+        ".scripts/hide-unhide-windows.sh".source = ./files/hide-unhide-windows.sh;
         ".config/hypr/hyprpaper.conf".source = ./files/hyprpaper.conf;
         ".config/hypr/wallpaper.png".source = ./files/wallpaper.png;
         ".swaylock/config".source = ./files/swaylock.conf;
@@ -71,7 +72,7 @@ in {
           gaps_out = 0; # gaps between windows and monitor edges
           cursor_inactive_timeout = 5; # in seconds, after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
           resize_on_border = true; # enables resizing windows by clicking and dragging on borders and gaps
-          extend_border_grab_area = 15; # extends the area around the border where you can click and drag on, only used when general:resize_on_border is on.
+          extend_border_grab_area = 10; # extends the area around the border where you can click and drag on, only used when general:resize_on_border is on.
           allow_tearing = false; # master switch for allowing tearing to occur. See https://wiki.hyprland.org/Configuring/Tearing/.
         };
 
@@ -140,6 +141,10 @@ in {
           "$mainMod, SPACE, exec, wofi -i --show run"
           "$mainMod, V, togglefloating,"
           "$mainMod, J, togglesplit," # dwindle
+          # hide active window
+          "$mainMod, H, exec, /home/nfraison/.scripts/hide-unhide-windows.sh h"
+          # show hide window
+          "$mainMod, I, exec, /home/nfraison/.scripts/hide-unhide-windows.sh s"
 
           # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
@@ -150,8 +155,8 @@ in {
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
-          "$mainMod,TAB,workspace,e-1"
-          "ALT_L,TAB,workspace,e+1"
+          "$mainMod, TAB, workspace,e-1"
+          "ALT_L, TAB, workspace,e+1"
         ];
 
         bindl = [
@@ -267,8 +272,9 @@ in {
             #custom-firefox,
             #custom-mail,
             #custom-pycharm,
+            #custom-libreoffice,
             #custom-bitwarden {
-              padding: 0 5px;
+              padding: 0 6px;
             }
 
             #custom-terminal:hover,
@@ -276,6 +282,7 @@ in {
             #custom-firefox:hover,
             #custom-mail:hover,
             #custom-pycharm:hover,
+            #custom-libreoffice:hover,
             #custom-bitwarden:hover  {
                 background: #191919;
             }
@@ -296,10 +303,11 @@ in {
             modules-left = [
               "custom/nixos"
               "hyprland/workspaces"
-              "custom/terminal"
               "custom/filemanager"
+              "custom/terminal"
               "custom/firefox"
               "custom/mail"
+              "custom/libreoffice"
               "custom/pycharm"
               "custom/bitwarden"
             ];
@@ -375,7 +383,7 @@ in {
             "custom/pycharm" = {
               format = "󰌠";
               tooltip = false;
-              on-click = "/home/nfraison/.nix-profile/bin/pycharm-professional";
+              on-click = "/run/current-system/sw/bin/pycharm-professional";
             };
             "custom/mail" = {
               format = "󰺻";
@@ -386,6 +394,11 @@ in {
               format = "󰉋";
               tooltip = false;
               on-click = "/run/current-system/sw/bin/dolphin";
+            };
+            "custom/libreoffice" = {
+              format = "󰏆";
+              tooltip = false;
+              on-click = "/run/current-system/sw/bin/libreoffice";
             };
             "custom/bitwarden" = {
               format = "󰞀";
