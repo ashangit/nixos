@@ -187,7 +187,9 @@ in {
 
         exec-once = [
           "hyprpaper &"
+          "poweralertd"
           "swayidle -w"
+          "swaync"
         ];
       };
     };
@@ -255,6 +257,7 @@ in {
             #battery,
             #bluetooth,
             #clock,
+            #custom-notification,
             #cpu,
             #custom-nixos,
             #disk,
@@ -264,7 +267,7 @@ in {
             #pulseaudio,
             #window,
             #workspaces  {
-              padding: 0 10px;
+              padding: 0 8px;
             }
 
             #custom-terminal,
@@ -325,6 +328,7 @@ in {
               "bluetooth"
               "battery"
               "clock"
+              "custom/notification"
             ];
             backlight = {
               format = "{icon} {percent}%";
@@ -409,6 +413,24 @@ in {
               format = "";
               tooltip = false;
               on-click = "/run/current-system/sw/bin/wlogout --protocol layer-shell";
+            };
+            "custom/notification" = {
+              "tooltip" = false;
+              "format" = "{icon}";
+              "format-icons" = {
+                "notification" = "<span foreground='red'><sup></sup></span>";
+                "none" = "";
+                "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+                "dnd-none" = "";
+                "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                "inhibited-none" = "";
+                "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                "dnd-inhibited-none" = "";
+              };
+              "return-type" = "json";
+              "exec" = "/run/current-system/sw/bin/swaync-client -swb";
+              "on-click" = "/run/current-system/sw/bin/swaync-client -t -sw";
+              "escape" = true;
             };
             disk = {
               interval = 10;
