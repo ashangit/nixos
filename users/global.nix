@@ -138,6 +138,7 @@ in {
           "$mainMod, F, exec, firefox"
           "$mainMod, P, exec, pycharm-professional"
           "$mainMod, S, exec, sublime"
+          "$mainMod, T, exec, thunderbird"
           "$mainMod, SPACE, exec, wofi -i --show run"
           "$mainMod, V, togglefloating,"
           "$mainMod, J, togglesplit," # dwindle
@@ -392,7 +393,7 @@ in {
             "custom/mail" = {
               format = "󰺻";
               tooltip = false;
-              on-click = "/run/current-system/sw/bin/mailspring";
+              on-click = "/run/current-system/sw/bin/thunderbird";
             };
             "custom/filemanager" = {
               format = "󰉋";
