@@ -20,7 +20,7 @@ in {
     ];
   };
 
-  home-manager.users.nfraison = {...}: {
+  home-manager.users.nfraison = {pkgs, ...}: {
     home = {
       # Home Manager needs a bit of information about you and the paths it should
       # manage.
@@ -30,9 +30,9 @@ in {
       file = {
         ".scripts/hide-unhide-windows.sh".source = ./files/hide-unhide-windows.sh;
         ".config/hypr/hyprpaper.conf".source = ./files/hyprpaper.conf;
-        ".config/hypr/wallpaper.png".source = ./files/wallpaper.png;
+        ".config/hypr/wallpaper.png".source = "${pkgs.utterly-nord-plasma}/share/wallpapers/Utterly-Nord/contents/screenshot.png";
         ".swaylock/config".source = ./files/swaylock.conf;
-        ".swaylock/wallpaper.png".source = ./files/wallpaper.png;
+        ".swaylock/wallpaper.png".source = "${pkgs.utterly-nord-plasma}/share/wallpapers/Utterly-Nord/contents/screenshot.png";
         ".config/swayidle/config".source = ./files/swayidle.conf;
         ".config/wlogout/layout".source = ./files/wlogout.conf;
       };
