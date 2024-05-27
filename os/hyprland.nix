@@ -6,8 +6,28 @@
     hyprland.xwayland.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  services = {
+    xserver = {
+      enable = true;
+
+      layout = "fr";
+      xkbVariant = "";
+      videoDrivers = ["amdgpu"];
+
+      displayManager.sddm = {
+        enable = true;
+        theme = "Utterly-Nord";
+        wayland.enable = true;
+        autoNumlock = true;
+      };
+    };
+  };
+
+  fonts.packages = with pkgs; [
     nerdfonts
+  ];
+
+  environment.systemPackages = with pkgs; [
     hyprpaper
     hyprpicker
     poweralertd
@@ -21,6 +41,7 @@
     libsForQt5.bluedevil # bluetooth manager
     libsForQt5.plasma-systemmonitor # system monitor
     pavucontrol # sound control
+    utterly-nord-plasma # KDE theme (SDDM, wallpaper...)
     wofi
   ];
 }
