@@ -5,7 +5,15 @@
     kernelModules = ["kvm-amd"];
 
     initrd = {
-      availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+      availableKernelModules = [
+        "nvme"
+        "ehci_pci"
+        "xhci_pci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
       kernelModules = [
         "amdgpu"
       ];
@@ -19,5 +27,10 @@
 
     # Delete all files in /tmp during boot.
     tmp.cleanOnBoot = true;
+
+    plymouth = {
+      enable = true;
+      theme = "spinner";
+    };
   };
 }
