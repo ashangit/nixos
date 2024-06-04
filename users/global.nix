@@ -188,9 +188,7 @@ in {
 
         exec-once = [
           "hyprpaper &"
-          "poweralertd"
           "swayidle -w"
-          "swaync"
         ];
       };
     };

@@ -5,6 +5,7 @@
     ./locale.nix
     ./documentation.nix
     ./hyprland.nix
+    ./systemd.nix
   ];
 
   # Set your time zone.

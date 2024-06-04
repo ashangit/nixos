@@ -3,21 +3,6 @@
     logiops
   ];
 
-  # Systemd services
-  systemd.services.logid = {
-    enable = true;
-    description = "Logitech Configuration Daemon";
-    after = ["network.target"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "simple";
-      User = "root";
-      ExecStart = "${pkgs.logiops}/bin/logid";
-      ExecReload = "/bin/kill -HUP $MAINPID";
-      Restart = "on-failure";
-    };
-  };
-
   # Config
   environment.etc."logid.cfg" = {
     mode = "0550";

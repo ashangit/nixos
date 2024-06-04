@@ -10,16 +10,20 @@
     xserver = {
       enable = true;
 
-      layout = "fr";
-      xkbVariant = "";
-      videoDrivers = ["amdgpu"];
-
-      displayManager.sddm = {
-        enable = true;
-        theme = "Utterly-Nord";
-        wayland.enable = true;
-        autoNumlock = true;
+      xkb = {
+        layout = "fr";
+        variant = "";
       };
+      videoDrivers = ["amdgpu"];
+    };
+  };
+
+  services = {
+    displayManager.sddm = {
+      enable = true;
+      theme = "Utterly-Nord";
+      wayland.enable = true;
+      autoNumlock = true;
     };
   };
 
