@@ -17,8 +17,6 @@ in
       "openssl-1.1.1w"
     ];
 
-    security.pam.services.swaylock = {};
-
     # List packages installed in system profile
     environment.systemPackages = with pkgs; [
       # ---------------------------------------------------------------------

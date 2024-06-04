@@ -30,10 +30,9 @@ in {
       file = {
         ".scripts/hide-unhide-windows.sh".source = ./files/hide-unhide-windows.sh;
         ".config/hypr/hyprpaper.conf".source = ./files/hyprpaper.conf;
+        ".config/hypr/hypridle.conf".source = ./files/hypridle.conf;
+        ".config/hypr/hyprlock.conf".source = ./files/hyprlock.conf;
         ".config/hypr/wallpaper.png".source = "${pkgs.utterly-nord-plasma}/share/wallpapers/Utterly-Nord/contents/screenshot.png";
-        ".swaylock/config".source = ./files/swaylock.conf;
-        ".swaylock/wallpaper.png".source = "${pkgs.utterly-nord-plasma}/share/wallpapers/Utterly-Nord/contents/screenshot.png";
-        ".config/swayidle/config".source = ./files/swayidle.conf;
         ".config/wlogout/layout".source = ./files/wlogout.conf;
       };
 
@@ -162,7 +161,7 @@ in {
 
         bindl = [
           # trigger when the switch is toggled
-          ",switch:[switch name],exec,swaylock"
+          ",switch:[switch name],exec,hyprlock"
           # trigger when the switch is turning on
           ",switch:on:[switch name],exec,hyprctl keyword monitor \"eDP-1,1920x1080@60,0x0,1\""
           # trigger when the switch is turning off
@@ -188,7 +187,6 @@ in {
 
         exec-once = [
           "hyprpaper &"
-          "swayidle -w"
         ];
       };
     };

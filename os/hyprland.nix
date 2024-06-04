@@ -3,6 +3,7 @@
 
   programs = {
     hyprland.enable = true;
+    hyprlock.enable = true;
     hyprland.xwayland.enable = true;
   };
 
@@ -25,6 +26,7 @@
       wayland.enable = true;
       autoNumlock = true;
     };
+    hypridle.enable = true;
   };
 
   fonts.packages = with pkgs; [
@@ -32,12 +34,11 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    brightnessctl
     hyprpaper
     hyprpicker
     poweralertd
     swaynotificationcenter
-    swayidle
-    swaylock-effects
     wlogout
     xdg-desktop-portal-hyprland
 
